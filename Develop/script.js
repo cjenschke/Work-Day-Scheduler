@@ -1,22 +1,19 @@
-const currentDate = new Date();
-const currentTime = currentDate.toLocaleDateString([], {
-    hour: '2-digit',
-    minute: '2-digit'
-});
-console.log('Current time; ' + currentTime);
+//-- Current Date & Time
+const date = dayjs();
+const dateAndTime = date.format('MMMM D, YYYY h:mm A');
+console.log(dateAndTime);
+$('#current-day').html(dateAndTime);
 
-
+// console.log('Current time; ' + currentDate);
+// document.getElementById('current-day').textContent = 'Current Date & Time: ' + currentTime;
 
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
-    document.getElementById('current-day').textContent = 'Current Date & Time: ' + currentTime;
+$(document).ready(function () {
 
-    function updateTime() {
-        setInterval(updateTime, 1000);
-    }
+
 
 
 

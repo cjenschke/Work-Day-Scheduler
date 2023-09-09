@@ -9,9 +9,31 @@ $('#current-day').html(dateAndTime);
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(document).ready(function () {
-    let saveButton = $('.saveBtn');
-    saveButton.click(function () {
-        console.log('save button clicked')
+
+    $('.saveBtn').on('click', function () {
+        let text = $(this).siblings('description').val(JSON.stringify);
+        let time = $(this).parent().attr('id');
+        localStorage.setItem(time, text);
+
+
+        // let textInput = $('description');
+        // let textValue = textInput.val();
+
+        // localStorage.setItem('text', textValue);
+    })
+
+    let currentTime = new Date().getHours();
+    $('.time-block').each(function () {
+        let hour = parseInt($(this).find('.hour').text());
+        let description = $(this).find('description');
+        let saveBtn = $(this).find('.savebtn');
+        if (hour < currentTime) {
+            $(this).addClass('past');
+        } else if (hour === currentTime) {
+            $(this).addClass('present');
+        } else {
+            $(this).addClass('future');
+        }
     })
 
 
@@ -36,6 +58,7 @@ $(document).ready(function () {
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
     //
-    // TODO: Add code to display the current date in the header of the page.
+    $('#hour9 .description').val(localStorage.getItem('hour9'));
+
 });
 

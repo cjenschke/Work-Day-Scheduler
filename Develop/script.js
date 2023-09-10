@@ -10,67 +10,46 @@ $('#current-day').html(dateAndTime);
 // in the html.
 $(document).ready(function () {
 
-    $('.saveBtn').on('click', function () {
-        let text = $(this).siblings('.description').val();
-        let time = $(this).parent().attr('id');
-
-        localStorage.setItem(text, time);
-        console.log(text, time);
-
-        // let inputText = $('description').val();
-        // let stringText = inputText.toString();
-
-        // let myJSON = JSON.stringify(text);
-        // localStorage.setItem('textinput', text);
-        // let textInput = localStorage.getItem('textinput');
-        // let textObject = JSON.parse(text);
-        // document.getElementById
+    const storedText = localStorage.getItem('myData')
 
 
 
-        // localStorage.setItem(time, text);
-    })
 
-    let currentTime = new Date().getHours();
-    console.log(currentTime);
     $('.time-block').each(function () {
-        let hour = +$(this).attr('id').split('hour-')[1];
-        let description = $(this).find('description');
-        let saveBtn = $(this).find('.savebtn');
-        console.log(hour);
-        console.log(currentTime);
-        if (hour < currentTime) {
+        const scheduleHour = $(this).attr('id').split('hour-')[1];
+        const currentHour = new Date().getHours();
+        console.log(scheduleHour, currentHour);
+
+        if (scheduleHour < currentHour) {
             $(this).addClass('past');
-        } else if (hour === currentTime) {
-            $(this).addClass('present');
-        } else {
+        } else if (scheduleHour > currentHour) {
             $(this).addClass('future');
+        } else {
+            $(this).addClass('present');
         }
     })
 
+    $('.saveBtn').on('click', function () {
+        const text = $(this).siblings('.description').val();
+        const time = $(this).parent().attr('id');
+
+        localStorage.setItem(time, text);
+
+        const storedData = localStorage.getItem('hour-9');
+        const parsedData = JSON.parse(storedData);
+
+        if (parsedData) {
+            document.getElementById('#hour-9').value = parsedData.hour9;
+        }
 
 
+    })
+    // const storedData = localStorage.getItem('workDayPlannerData')
+    // const workDayPlannerData = JSON.parse(storedData);
+
+    // $('#hour-9 textarea').val(localStorage.getItem('hour-9'));
+    // $('#hour-10 textarea').val(localStorage.getItem('hour-10'));
 
 
-
-    // TODO: Add a listener for click events on the save button. This code should
-    // use the id in the containing time-block as a key to save the user input in
-    // local storage. HINT: What does `this` reference in the click listener
-    // function? How can DOM traversal be used to get the "hour-x" id of the
-    // time-block containing the button that was clicked? How might the id be
-    // useful when saving the description in local storage?
-    //
-    // TODO: Add code to apply the past, present, or future class to each time
-    // block by comparing the id to the current hour. HINTS: How can the id
-    // attribute of each time-block be used to conditionally add or remove the
-    // past, present, and future classes? How can Day.js be used to get the
-    // current hour in 24-hour time?
-    //
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
-    //
-    $
 
 });
-

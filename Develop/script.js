@@ -14,19 +14,16 @@ $(document).ready(function () {
         let text = $(this).siblings('description').val(JSON.stringify);
         let time = $(this).parent().attr('id');
         localStorage.setItem(time, text);
-
-
-        // let textInput = $('description');
-        // let textValue = textInput.val();
-
-        // localStorage.setItem('text', textValue);
     })
 
     let currentTime = new Date().getHours();
+    console.log(currentTime);
     $('.time-block').each(function () {
-        let hour = parseInt($(this).find('.hour').text());
+        let hour = +$(this).attr('id').split('hour-')[1];
         let description = $(this).find('description');
         let saveBtn = $(this).find('.savebtn');
+        console.log(hour);
+        console.log(currentTime);
         if (hour < currentTime) {
             $(this).addClass('past');
         } else if (hour === currentTime) {

@@ -11,9 +11,24 @@ $('#current-day').html(dateAndTime);
 $(document).ready(function () {
 
     $('.saveBtn').on('click', function () {
-        let text = $(this).siblings('description').val(JSON.stringify);
+        let text = $(this).siblings('.description').val();
         let time = $(this).parent().attr('id');
-        localStorage.setItem(time, text);
+
+        localStorage.setItem(text, time);
+        console.log(text, time);
+
+        // let inputText = $('description').val();
+        // let stringText = inputText.toString();
+
+        // let myJSON = JSON.stringify(text);
+        // localStorage.setItem('textinput', text);
+        // let textInput = localStorage.getItem('textinput');
+        // let textObject = JSON.parse(text);
+        // document.getElementById
+
+
+
+        // localStorage.setItem(time, text);
     })
 
     let currentTime = new Date().getHours();
@@ -55,7 +70,7 @@ $(document).ready(function () {
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
     //
-    $('#hour9 .description').val(localStorage.getItem('hour9'));
+    $
 
 });
 
